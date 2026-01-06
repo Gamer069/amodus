@@ -20,7 +20,7 @@ pub enum Commands {
 	New {
 		name: String,
 
-		#[arg(short, long, default_value = "0.0.1")]
+		#[arg(short, long, default_value = "0.1.0")]
 		version: String,
 
 		#[arg(short, long, default_value = "2024")]
