@@ -1,0 +1,6 @@
+use amodus::prelude::*;
+
+/// Mod initializer for {{MOD_NAME}}
+#[mod_init]
+fn init() {
+}

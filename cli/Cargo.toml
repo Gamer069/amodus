@@ -1,0 +1,13 @@
+[package]
+name = "amodus_cli"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+cargo_toml = "0.22.3"
+clap = { version = "4.5.53", features = ["derive"] }
+clap_complete = "4.5.62"
+clap_mangen = "0.2.31"
+susio = { version = "0.1.0", path = "../susio" }
+tar = "0.4.44"
+zstd = "0.13.3"

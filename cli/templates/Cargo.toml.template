@@ -1,0 +1,11 @@
+[package]
+name = "{{MOD_NAME}}"
+version = "{{MOD_VERSION}}"
+edition = "{{MOD_EDITION}}"
+
+[dependencies]
+# amodus = "*"
+amodus = { path = "../sdk" }
+
+[lib]
+crate-type = ["cdylib"]
