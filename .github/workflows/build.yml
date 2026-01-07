@@ -17,6 +17,8 @@ jobs:
       # 1. Checkout repository
       - name: 1. Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # 2. Set up Rust
       - name: 2. Set up Rust
@@ -36,6 +38,7 @@ jobs:
 
       # 4. Detect, build, tag crates and prepare artifacts
       - name: 4. Detect, build, tag crates and prepare artifacts
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
@@ -66,23 +69,26 @@ jobs:
               cp "$crate/$BIN" "artifacts/${name}-${version}-${OS}$EXT"
             fi
 
-            # Tag crate using GITHUB_TOKEN
-            git config user.name "github-actions"
-            git config user.email "actions@github.com"
-            TAG="${name}-${version}"
-            git tag -f "$TAG"
-            git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$TAG"
+            # Tag crate using GITHUB_TOKEN (only on one OS to avoid conflicts)
+            if [[ "$OS" == "Linux" ]]; then
+              git config user.name "github-actions"
+              git config user.email "actions@github.com"
+              TAG="${name}-${version}"
+              git tag -f "$TAG" || true
+              git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$TAG" || true
+            fi
           done
 
       # Upload artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: release-binaries
+          name: release-binaries-${{ matrix.os }}
           path: artifacts/
 
-      # Create GitHub releases
+      # Create GitHub releases (only run if triggered by tag push)
       - name: Create GitHub releases
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: artifacts/*
