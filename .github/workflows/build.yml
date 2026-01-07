@@ -46,6 +46,9 @@ jobs:
           CRATES=$(find . -name Cargo.toml -not -path "./target/*" -exec dirname {} \;)
           echo "Found crates: $CRATES"
 
+          # Create artifacts directory
+          mkdir -p artifacts
+
           # Build each crate
           for crate in $CRATES; do
             name=$(basename "$crate")
@@ -57,16 +60,22 @@ jobs:
             cargo build --release
             popd
 
-            # Prepare artifact
-            mkdir -p artifacts
-            BIN="target/release/$name"
+            # Determine binary path
             EXT=""
             if [[ "$OS" == "Windows" ]]; then
               EXT=".exe"
-              BIN="target/release/$name.exe"
             fi
-            if [[ -f "$crate/$BIN" ]]; then
-              cp "$crate/$BIN" "artifacts/${name}-${version}-${OS}$EXT"
+            
+            BIN_PATH="$crate/target/release/$name$EXT"
+            
+            echo "Looking for binary at: $BIN_PATH"
+            if [[ -f "$BIN_PATH" ]]; then
+              echo "Found! Copying to artifacts/"
+              cp "$BIN_PATH" "artifacts/${name}-${version}-${OS}${EXT}"
+            else
+              echo "WARNING: Binary not found at $BIN_PATH"
+              echo "Directory contents:"
+              ls -la "$crate/target/release/" 2>/dev/null || echo "Release directory doesn't exist"
             fi
 
             # Tag crate using GITHUB_TOKEN (only on one OS to avoid conflicts)
@@ -78,6 +87,10 @@ jobs:
               git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$TAG" || true
             fi
           done
+          
+          echo ""
+          echo "=== Artifacts ready for upload ==="
+          ls -lah artifacts/ 2>/dev/null || echo "No artifacts created"
 
       # Upload artifacts
       - name: Upload artifacts
