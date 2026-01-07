@@ -26,7 +26,6 @@ jobs:
 
       # 3. Install cross-compilers
       - name: 3. Install cross-compilers
-        if: runner.os == 'Linux' || runner.os == 'macOS'
         shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Linux" ]]; then
