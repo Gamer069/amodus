@@ -8,5 +8,4 @@ repository = "https://www.github.com/Gamer069/amodus"
 
 [dependencies]
 dll-syringe = "0.17.1"
-reqwest = { version = "0.12.26", features = ["blocking"] }
 steamlocate = "2.0.1"

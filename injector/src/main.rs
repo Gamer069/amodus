@@ -6,9 +6,6 @@ use steamlocate::SteamDir;
 /// :)
 const AMOGUS_APP_ID: u32 = 945360;
 
-/// CHANGE IF FORK
-const RUNTIME_URL: &str = "https://github.com/Gamer069/amodus/releases/download/rt-0.1.0/amodus_runtime.dll";
-
 fn find_among_us() -> Option<PathBuf> {
 	let steamdir = SteamDir::locate().ok()?;
 
@@ -25,7 +22,7 @@ fn find_among_us() -> Option<PathBuf> {
 	}
 }
 
-fn find_or_download_runtime(among_us_dir: &PathBuf) -> PathBuf {
+fn find_runtime(among_us_dir: &PathBuf) -> PathBuf {
 	// Check current directory first
 	let cwd_runtime = std::env::current_dir().unwrap().join("amodus_runtime.dll");
 	if cwd_runtime.exists() {
@@ -41,19 +38,8 @@ fn find_or_download_runtime(among_us_dir: &PathBuf) -> PathBuf {
 	}
 	
 	// Download to current directory
-	println!("[Amodus] Runtime not found, downloading from {}", RUNTIME_URL);
-	download_runtime(&cwd_runtime);
-	println!("[Amodus] Runtime downloaded");
-	
-	cwd_runtime
-}
-
-fn download_runtime(dest: &PathBuf) {
-	let response = reqwest::blocking::get(RUNTIME_URL)
-		.expect("Failed to download runtime");
-	
-	let bytes = response.bytes().expect("Failed to read runtime");
-	fs::write(dest, bytes).expect("Failed to save runtime");
+	eprintln!("[Amodus] Runtime not found, please install the latest amodus_runtime.dll from the official Amodus github.");
+    std::process::exit(-1);
 }
 
 fn main() {
@@ -62,7 +48,7 @@ fn main() {
 			println!("[Amodus] Found Among Us at \"{}\"", path.display());
 			
 			let game_dir = path.parent().unwrap().to_path_buf();
-			let runtime_dll = find_or_download_runtime(&game_dir);
+			let runtime_dll = find_runtime(&game_dir);
 
 			// Launch and inject
 			#[cfg(target_os = "windows")]
