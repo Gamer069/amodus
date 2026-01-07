@@ -2,6 +2,8 @@
 
 A powerful modding framework for Among Us, written in Rust.
 
+NOTE: This project does not condone piracy, you must have a legal copy of Among Us bought on steam to use Amodus.
+
 ## What is Amodus? 💡
 
 Amodus lets you create Among Us mods using Rust instead of C#. It provides a clean API for adding custom roles, abilities, and game mechanics while handling all the complexity of interacting with the game's internals.
@@ -28,11 +30,23 @@ amodus build
 amodus install
 ```
 
-## 🎮 Quick Start (for end users) 🏁
+## 🎮 Running Among Us with Amodus 🏁
+First install the latest runtime dll from https://github.com/Gamer069/amodus/releases/,
+and in the same directory as the downloaded runtime dll, install amodus-injector if you don't have it yet by doing:
 ```bash
-..? i dont know what the quickstart for end users will be for now
-probably something similar to an installer..?
+cargo install amodus-injector
 ```
+and run:
+
+```bash
+amodus-injector
+```
+
+Please note that you must run the amodus injector every time you boot up a modded session. Otherwise, mods will not load properly in most cases.
+
+## Installing mods
+To install a mod, first download the mod's .sus file from a trusted source,
+then copy it to C:\Users\<user>\AppData\Local\Amodus\mods (this applies to linux too).
 
 ## Example Mod
 
