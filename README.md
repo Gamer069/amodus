@@ -4,12 +4,12 @@ A powerful modding framework for Among Us, written in Rust.
 
 NOTE: This project does not condone piracy, you must have a legal copy of Among Us bought on steam to use Amodus.
 
-## What is Amodus? 💡
+## 💡 What is Amodus? 💡
 
 Amodus lets you create Among Us mods using Rust instead of C#. It provides a clean API for adding custom roles, abilities, and game mechanics while handling all the complexity of interacting with the game's internals.
 It injects mods with a version.dll proxy.
 
-## Features ✨
+## ✨ Features ✨
 
 - **Rust-powered**: Write mods in Rust with full type safety and performance
 - **Simple API**: Clean, intuitive interface for creating roles and abilities
@@ -44,11 +44,11 @@ amodus-injector
 
 Please note that you must run the amodus injector every time you boot up a modded session. Otherwise, mods will not load properly in most cases.
 
-## Installing mods
+## 📥 Installing mods 💾
 To install a mod, first download the mod's .sus file from a trusted source,
 then copy it to C:\Users\<user>\AppData\Local\Amodus\mods (this applies to linux too).
 
-## Example Mod
+## ⚠️ Example Mod (PREVIEW) ⚠️
 
 The following example mod adds a custom crewmate role called "Test Role" 
 - When a player becomes Test Role, they gain a special ability called `shoot`.
@@ -81,7 +81,7 @@ pub fn init() {
 }
 ```
 
-## Project Structure
+## 📚 Project Structure 📚
 
 - `cli/` - Command-line tool for managing mods
 - `sdk/` - Core API and types for mod developers
@@ -89,7 +89,7 @@ pub fn init() {
 - `runtime/` - Runtime version.dll proxy that loads Rust mods into Among Us
 - `injector/` - Launcher that is capable of launching Among Us with mods 
 
-## Contributing
+## 👑 Contributing 👑
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -98,11 +98,11 @@ Contributions are welcome! Please follow these guidelines:
 - Add doc comments to all public items so users understand what they do
 - Test your changes before submitting
 
-## License
+## ⚖️ License 🪪
 
 Licensed under either of:
 
-- MIT license ([LICENSE-MIT](LICENSE-MIT))
-- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+- MIT license ([LICENSE-MIT](licenses/LICENSE-MIT))
+- Apache License, Version 2.0 ([LICENSE-APACHE](licenses/LICENSE-APACHE))
 
 at your option.
