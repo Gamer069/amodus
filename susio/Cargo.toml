@@ -1,7 +1,12 @@
+# warning: manifest has no description, license, license-file, documentation, homepage or repository
+
 [package]
 name = "susio"
 version = "0.1.0"
 edition = "2024"
+description = "Library for creating and extracting .sus package archives for the Amodus mod loader"
+license = "Apache-2.0 OR MIT"
+repository = "https://www.github.com/Gamer069/amodus"
 
 [dependencies]
 tar = "0.4.44"

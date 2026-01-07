@@ -35,19 +35,19 @@ pub fn package_sus(v: bool, release: bool) {
 
 	let wasm = if release { "target/wasm32-unknown-unknown/release/{{MOD_NAME}}.wasm" } else { "target/wasm32-unknown-unknown/debug/{{MOD_NAME}}.wasm" };
 	let wasm = wasm.replace("{{MOD_NAME}}", manifest.package().name());
-    let wasm = Path::new(&wasm);
+	let wasm = Path::new(&wasm);
 
-    let mod_toml = Path::new("mod.toml");
-    let res = Path::new("res");
-    let out = Path::new("mod.sus");
+	let mod_toml = Path::new("mod.toml");
+	let res = Path::new("res");
+	let out = Path::new("mod.sus");
 
-    let sus = Sus::new();
+	let sus = Sus::new();
 
-    sus.construct(
-        v, 
-        wasm,
-        mod_toml,
-        Some(res),
-        out
-    );
+	sus.construct(
+		v, 
+		wasm,
+		mod_toml,
+		Some(res),
+		out
+	);
 }

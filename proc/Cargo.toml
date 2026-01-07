@@ -2,6 +2,9 @@
 name = "amodus_proc"
 version = "0.1.0"
 edition = "2024"
+description = "Proc SDK for making mods for the Amodus modloader"
+license = "Apache-2.0 OR MIT"
+repository = "https://www.github.com/Gamer069/amodus"
 
 [dependencies]
 proc-macro2 = "1.0.103"

@@ -107,8 +107,8 @@ impl Amodus {
 	pub fn new() -> Self {
 		let mut config = Config::new();
 
-        // DONT consume fuel because consuming fuel is stupid and limits the stuff a particular mod
-        // can achieve.
+		// DONT consume fuel because consuming fuel is stupid and limits the stuff a particular mod
+		// can achieve.
 		config.consume_fuel(false);
 
 		config.cranelift_opt_level(OptLevel::SpeedAndSize);
@@ -147,24 +147,24 @@ impl Amodus {
 		sus.extract(false, e.path().as_path(), path);
 
 		let mod_toml = std::fs::read_to_string(path.join("mod.toml"))?;
-        let mod_toml: ModToml = toml::from_str(&mod_toml)?;
+		let mod_toml: ModToml = toml::from_str(&mod_toml)?;
 
 		let wasm = std::fs::read(path.join("mod.wasm"))?;
 		let wasm = Module::new(&self.engine, wasm)?;
 
 		let mut wasm_store = Store::new(&self.engine, AmodusModState { mem: None, mod_toml });
 
-        let mut wasm_linker = Linker::<AmodusModState>::new(&self.engine);
+		let mut wasm_linker = Linker::<AmodusModState>::new(&self.engine);
 
-        link::link(&mut wasm_linker)?;
+		link::link(&mut wasm_linker)?;
 
 		let wasm_inst = wasm_linker.instantiate(&mut wasm_store, &wasm)?;
 
-        let mem = wasm_inst
-            .get_memory(&mut wasm_store, "memory")
-            .expect("mod must be not sus and the mod must export memory called 'memory'");
+		let mem = wasm_inst
+			.get_memory(&mut wasm_store, "memory")
+			.expect("mod must be not sus and the mod must export memory called 'memory'");
 
-        wasm_store.data_mut().mem = Some(mem);
+		wasm_store.data_mut().mem = Some(mem);
 
 		let res_dir = std::fs::read_dir(path.join("res"))?;
 
@@ -227,9 +227,9 @@ impl From<io::Error> for AmodusError {
 }
 
 impl From<toml::de::Error> for AmodusError {
-    fn from(e: toml::de::Error) -> Self {
-        AmodusError::Toml(e)
-    }
+	fn from(e: toml::de::Error) -> Self {
+		AmodusError::Toml(e)
+	}
 }
 
 impl From<wasmtime::Error> for AmodusError {
@@ -258,6 +258,6 @@ pub struct AmodusModState {
 	/// parsed mod.toml
 	pub mod_toml: ModToml,
 
-    /// memory
-    pub mem: Option<Memory>,
+	/// memory
+	pub mem: Option<Memory>,
 }

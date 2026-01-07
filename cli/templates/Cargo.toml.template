@@ -4,8 +4,7 @@ version = "{{MOD_VERSION}}"
 edition = "{{MOD_EDITION}}"
 
 [dependencies]
-# amodus = "*"
-amodus = { path = "../sdk" }
+amodus = "*"
 
 [lib]
 crate-type = ["cdylib"]

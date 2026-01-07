@@ -7,7 +7,7 @@ use steamlocate::SteamDir;
 const AMOGUS_APP_ID: u32 = 945360;
 
 /// CHANGE IF FORK
-const RUNTIME_URL: &str = "https://github.com/Gamer069/amodus/releases/latest/download/amodus_runtime.dll";
+const RUNTIME_URL: &str = "https://github.com/Gamer069/amodus/releases/download/rt-0.1.0/amodus_runtime.dll";
 
 fn find_among_us() -> Option<PathBuf> {
 	let steamdir = SteamDir::locate().ok()?;

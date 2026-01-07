@@ -1,7 +1,10 @@
 [package]
 name = "amodus_injector"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
+description = "Among Us launcher which injects the Amodus runtime into Among Us so you can use mods."
+license = "Apache-2.0 or MIT"
+repository = "https://www.github.com/Gamer069/amodus"
 
 [dependencies]
 dll-syringe = "0.17.1"

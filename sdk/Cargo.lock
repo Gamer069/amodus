@@ -12,6 +12,8 @@ dependencies = [
 [[package]]
 name = "amodus_proc"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c145b7447147a9fcab34181468ff6915801cf1659ed01df1dd53786e06d742a9"
 dependencies = [
  "proc-macro2",
  "quote",

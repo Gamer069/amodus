@@ -2,12 +2,19 @@
 name = "amodus_cli"
 version = "0.1.0"
 edition = "2024"
+description = "CLI for developers for creating, building, installing mods for Amodus"
+license = "Apache-2.0 OR MIT"
+repository = "https://www.github.com/Gamer069/amodus"
 
 [dependencies]
 cargo_toml = "0.22.3"
 clap = { version = "4.5.53", features = ["derive"] }
 clap_complete = "4.5.62"
 clap_mangen = "0.2.31"
-susio = { version = "0.1.0", path = "../susio" }
+susio = "0.1.0"
 tar = "0.4.44"
 zstd = "0.13.3"
+
+[[bin]]
+name = "amodus"
+path = "src/main.rs"

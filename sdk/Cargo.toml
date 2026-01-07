@@ -2,7 +2,9 @@
 name = "amodus"
 version = "0.1.0"
 edition = "2024"
+description = "SDK for making mods for the Amodus modloader"
+license = "Apache-2.0 OR MIT"
+repository = "https://www.github.com/Gamer069/amodus"
 
 [dependencies]
-# amodus_proc = "*"
-amodus_proc = { path = "../proc" }
+amodus_proc = "0.1.0"
