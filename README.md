@@ -98,7 +98,7 @@ Contributions are welcome! Please follow these guidelines:
 - Add doc comments to all public items so users understand what they do
 - Test your changes before submitting
 
-## ⚖️ License 🪪
+## ⚖️ License 📝
 
 Licensed under either of:
 
